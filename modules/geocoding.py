@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+import numpy as np
 import pandas as pd
 import pgeocode
 
@@ -40,6 +41,30 @@ def plz_to_location(plz: str) -> Location:
         ort=str(result.place_name),
         latitude=float(result.latitude),
         longitude=float(result.longitude),
+    )
+
+
+def coords_to_location(latitude: float, longitude: float) -> Location:
+    """
+    Erzeugt eine Location direkt aus Koordinaten (z. B. von einem Kartenklick).
+    Sucht zusätzlich die nächstgelegene PLZ zur Anzeige (beste Näherung über
+    die lokale pgeocode-Datenbank, kein reverse-Geocoding-Webservice nötig).
+    """
+    nomi = pgeocode.Nominatim("de")
+    all_plz = nomi._data_frame.dropna(subset=["latitude", "longitude"])
+
+    # Einfache euklidische Näherung reicht für die PLZ-Anzeige (kein Distanzmaß
+    # mit Erdkrümmung nötig, da nur zur Beschriftung verwendet, nicht zur Berechnung)
+    distances = np.sqrt(
+        (all_plz["latitude"] - latitude) ** 2 + (all_plz["longitude"] - longitude) ** 2
+    )
+    nearest = all_plz.loc[distances.idxmin()]
+
+    return Location(
+        plz=str(nearest["postal_code"]),
+        ort=str(nearest["place_name"]),
+        latitude=float(latitude),
+        longitude=float(longitude),
     )
 
 

@@ -7,3 +7,5 @@ scipy>=1.13
 plotly>=5.22
 pyarrow>=16.0
 pytest>=8.0
+folium>=0.17
+streamlit-folium>=0.23
