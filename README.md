@@ -1,3 +1,44 @@
+
+# Klimadaten Webapp: Standortspezifische Klimadaten nach DIN/TS 12831-1
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://klimadaten-app.streamlit.app/)
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**🔗 Live-App:** [https://klimadaten-app.streamlit.app/](https://klimadaten-app.streamlit.app/)
+
+## Über das Projekt / About the Project
+
+Die **Klimadaten Webapp** ist eine interaktive Open-Source-Anwendung, die standortspezifische Wetter- und Klimadaten des Deutschen Wetterdienstes (DWD) abruft und für die Heizlastberechnung sowie energetische Gebäudebewertung nach **DIN/TS 12831-1** aufbereitet. 
+
+Dieses Tool wurde im Rahmen einer Bachelorarbeit im Studiengang Maschinenbau an der **Technischen Hochschule Nürnberg Georg Simon Ohm** entwickelt, um Ingenieuren, Planern und Studierenden einen schnellen, normkonformen Zugriff auf wichtige Klimakennwerte zu ermöglichen.
+
+### Kernfunktionen (Features)
+* **Automatisches Geocoding:** Umwandlung von deutschen Postleitzahlen (PLZ) in geografische Koordinaten.
+* **DWD Open Data Integration:** Direkter, API-Key-freier Abruf von historischen Wetterdaten (Temperatur, stündliche Auflösung) über die `wetterdienst`-Bibliothek.
+* **Normkonforme Kennwerte:** Automatische Berechnung der Jahresmitteltemperatur und der Norm-Außentemperatur nach DIN/TS 12831-1.
+* **Temperaturhäufigkeitsverteilung:** Mathematische Modellierung (Fitting) und Visualisierung der Daten zur Auslegung von Wärmepumpen.
+* **Datenexport:** Direkter Download der aufbereiteten Rohdaten als CSV.
+
+## Lokale Installation (Local Setup)
+
+Um die Klimadaten Webapp lokal auszuführen, klonen Sie dieses Repository und installieren Sie die benötigten Abhängigkeiten:
+
+```bash
+# Repository klonen
+git clone [https://github.com/DEIN_GITHUB_NAME/klimadaten-webapp.git](https://github.com/DEIN_GITHUB_NAME/klimadaten-webapp.git)
+
+# In das Verzeichnis wechseln
+cd klimadaten-webapp
+
+# Abhängigkeiten installieren
+pip install -r requirements.txt
+
+# Streamlit App starten
+streamlit run app.py
+
+
+
 # Klimadaten-App — Standortspezifische DWD-Klimadaten für die Heizsystemauslegung
 
 Open-Source-Webapp (Python/Streamlit), die DWD-Klimadaten per PLZ-Eingabe
